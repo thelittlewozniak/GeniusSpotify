@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,22 +27,26 @@ namespace GeniusSpotify
         public MainWindow()
         {
             InitializeComponent();
-            CheckButton();
+            var thread = new Thread(CheckButton);
+            thread.Start();
         }
         public async void CheckButton()
         {
             while (Checking)
             {
-                if(Keyboard.IsKeyDown(Key.F2))
-                {
-                    var name = GetSongTitle();
-                    if(name!=null)
-                    {
-                        var geniusClient = new GeniusClient("mDfybGWKRSP2NomhX4a6cAKBsEdI-mFgy_BmmSLyHsIVowWREi_bcEvcf3u8cy59");
-                        var result = await geniusClient.SearchClient.Search(Genius.Models.TextFormat.Plain, name);
-                        
-                    }
-                }
+                await Application.Current.Dispatcher.Invoke(async delegate
+                 {
+                     if (Keyboard.IsKeyDown(Key.F2))
+                     {
+                         var name = GetSongTitle();
+                         if (name != null)
+                         {
+                             var geniusClient = new GeniusClient("mDfybGWKRSP2NomhX4a6cAKBsEdI-mFgy_BmmSLyHsIVowWREi_bcEvcf3u8cy59");
+                             var result = await geniusClient.SearchClient.Search(Genius.Models.TextFormat.Plain, name);
+                         }
+                     }
+
+                 });
             }
         }
         public string GetSongTitle()
