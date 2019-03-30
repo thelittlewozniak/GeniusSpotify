@@ -1,8 +1,11 @@
 ﻿using Genius;
+using GeniusSpotify.model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,9 +27,11 @@ namespace GeniusSpotify
     public partial class MainWindow : Window
     {
         public bool Checking { get; set; } = true;
+        private HttpClient httpClient;
         public MainWindow()
         {
             InitializeComponent();
+            httpClient = new HttpClient();
             var thread = new Thread(CheckButton);
             thread.Start();
         }
@@ -41,8 +46,14 @@ namespace GeniusSpotify
                          var name = GetSongTitle();
                          if (name != null)
                          {
-                             var geniusClient = new GeniusClient("mDfybGWKRSP2NomhX4a6cAKBsEdI-mFgy_BmmSLyHsIVowWREi_bcEvcf3u8cy59");
-                             var result = await geniusClient.SearchClient.Search(Genius.Models.TextFormat.Plain, name);
+                             name = name.Trim();
+                             // Replace All space (unicode is \\s) to %20 
+                             name = name.Replace(" ", "%20");
+                             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + Properties.Resources.ACCESS_TOKEN_GENIUS);
+                             var result = await httpClient.GetAsync("https://api.genius.com/search?q="+ name);
+                             result.EnsureSuccessStatusCode();
+                             string jsonBody = await result.Content.ReadAsStringAsync();
+                             var resultBody = JsonConvert.DeserializeObject<Search>(jsonBody);
                          }
                      }
 

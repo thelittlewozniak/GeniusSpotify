@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Genius, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Genius.NET.2.0.0\lib\netstandard1.1\Genius.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
       <Private>True</Private>
@@ -203,6 +200,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="model\Hit.cs" />
+    <Compile Include="model\Response.cs" />
+    <Compile Include="model\Result.cs" />
+    <Compile Include="model\Search.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
