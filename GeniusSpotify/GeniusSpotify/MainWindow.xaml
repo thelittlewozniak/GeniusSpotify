@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeniusSpotify"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Soptify Genius" Height="450" Width="800" SizeToContent="Height" Topmost="True" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FFB0AAAA" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <TextBox HorizontalAlignment="Left" Height="276" Margin="252,76,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="264" Grid.IsSharedSizeScope="True"/>
     </Grid>
 </Window>

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Genius;
+using Spotify;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.Http;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GeniusSpotify
 {
@@ -20,9 +14,33 @@ namespace GeniusSpotify
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool Checking { get; set; } = true;
+        private ISpotify spotifyClient;
+        private IGenius geniusClient;
         public MainWindow()
         {
             InitializeComponent();
+            spotifyClient = new SpotifyClient();
+            geniusClient = new GeniusClient(Properties.Resources.ACCESS_TOKEN_GENIUS);
+            var thread = new Thread(CheckButton);
+            thread.Start();
+        }
+        public async void CheckButton()
+        {
+            while (Checking)
+            {
+                await Application.Current.Dispatcher.Invoke(async delegate
+                 {
+                     if (Keyboard.IsKeyDown(Key.F2))
+                     {
+                         var name = spotifyClient.GetSongTitle();
+                         if (name != null)
+                         {
+                             var result = await geniusClient.SearchSong(name);
+                         }
+                     }
+                 });
+            }
         }
     }
 }
