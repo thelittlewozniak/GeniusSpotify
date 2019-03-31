@@ -1,5 +1,5 @@
-﻿using GeniusSpotify.model;
-using Newtonsoft.Json;
+﻿using Genius;
+using Spotify;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -15,11 +15,13 @@ namespace GeniusSpotify
     public partial class MainWindow : Window
     {
         public bool Checking { get; set; } = true;
-        private HttpClient httpClient;
+        private ISpotify spotifyClient;
+        private IGenius geniusClient;
         public MainWindow()
         {
             InitializeComponent();
-            httpClient = new HttpClient();
+            spotifyClient = new SpotifyClient();
+            geniusClient = new GeniusClient(Properties.Resources.ACCESS_TOKEN_GENIUS);
             var thread = new Thread(CheckButton);
             thread.Start();
         }
@@ -31,36 +33,13 @@ namespace GeniusSpotify
                  {
                      if (Keyboard.IsKeyDown(Key.F2))
                      {
-                         var name = GetSongTitle();
+                         var name = spotifyClient.GetSongTitle();
                          if (name != null)
                          {
-                             name = name.Trim();
-                             // Replace All space (unicode is \\s) to %20 
-                             name = name.Replace(" ", "%20");
-                             httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + Properties.Resources.ACCESS_TOKEN_GENIUS);
-                             var result = await httpClient.GetAsync("https://api.genius.com/search?q="+ name);
-                             result.EnsureSuccessStatusCode();
-                             string jsonBody = await result.Content.ReadAsStringAsync();
-                             var resultBody = JsonConvert.DeserializeObject<Search>(jsonBody);
+                             var result = await geniusClient.SearchSong(name);
                          }
                      }
-
                  });
-            }
-        }
-        public string GetSongTitle()
-        {
-            var proc = Process.GetProcessesByName("Spotify").Where(x => x.MainWindowTitle != "").FirstOrDefault();
-            try
-            {
-                if (proc != null)
-                    return proc.MainWindowTitle;
-                else
-                    throw new SpotifyNotFoundException("Spotify not found");
-            }
-            catch (SpotifyNotFoundException)
-            {
-                return null;
             }
         }
     }

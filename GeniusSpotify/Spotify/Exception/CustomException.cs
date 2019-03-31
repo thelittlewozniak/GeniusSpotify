@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GeniusSpotify
+namespace Spotify.Exception
 {
-    class SpotifyNotFoundException : Exception
+    class SpotifyNotFoundException : SystemException
     {
         public SpotifyNotFoundException()
         {
@@ -17,7 +13,7 @@ namespace GeniusSpotify
         {
         }
 
-        public SpotifyNotFoundException(string message, Exception innerException) : base(message, innerException)
+        public SpotifyNotFoundException(string message, SystemException innerException) : base(message, innerException)
         {
         }
 

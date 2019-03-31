@@ -1,4 +1,4 @@
-﻿namespace GeniusSpotify.model
+﻿namespace Genius.model
 {
     public class Result
     {

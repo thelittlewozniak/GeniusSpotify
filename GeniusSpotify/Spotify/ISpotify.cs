@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeniusSpotify.model
+namespace Spotify
 {
-    class Search
+    public interface ISpotify
     {
-        public Response Response { get; set; }
+        string GetSongTitle();
     }
 }

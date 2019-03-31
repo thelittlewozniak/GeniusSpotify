@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GeniusSpotify.model
+namespace Genius.model
 {
     public class Response
     {
