@@ -68,5 +68,14 @@ namespace GeniusSpotify.Properties {
                 return ResourceManager.GetString("ACCESS_TOKEN_GENIUS", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à null.
+        /// </summary>
+        internal static string History {
+            get {
+                return ResourceManager.GetString("History", resourceCulture);
+            }
+        }
     }
 }

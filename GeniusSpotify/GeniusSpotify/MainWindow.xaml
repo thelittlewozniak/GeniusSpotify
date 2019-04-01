@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GeniusSpotify"
         mc:Ignorable="d"
-        Title="Soptify Genius" Height="450" Width="800" SizeToContent="Height" Topmost="True" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FFB0AAAA" ResizeMode="NoResize">
+        Title="Soptify Genius" Height="450" Width="800" SizeToContent="Height" Topmost="True" WindowStartupLocation="CenterScreen" Background="#FFB0AAAA" ResizeMode="CanMinimize" WindowStyle="None" AllowsTransparency="True">
     <Grid Margin="10">
-        <TextBox HorizontalAlignment="Left" Height="276" Margin="252,76,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="264" Grid.IsSharedSizeScope="True"/>
+        <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="741,0,0,0" VerticalAlignment="Top" Width="39" Background="#FF6C6969" BorderBrush="{x:Null}" Click="CloseButton_Click"/>
+        <Button x:Name="minimizeButton" Content="Minimize" HorizontalAlignment="Left" Margin="683,0,0,0" VerticalAlignment="Top" Width="53" Background="#FF6C6969" BorderBrush="{x:Null}" Click="MinimizeButton_Click"/>
+        <ListView HorizontalAlignment="Left" Height="395" Margin="10,25,0,0" VerticalAlignment="Top" Width="760" Background="#FF6C6969">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>

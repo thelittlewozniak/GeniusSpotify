@@ -120,4 +120,7 @@
   <data name="ACCESS_TOKEN_GENIUS" xml:space="preserve">
     <value>mDfybGWKRSP2NomhX4a6cAKBsEdI-mFgy_BmmSLyHsIVowWREi_bcEvcf3u8cy59</value>
   </data>
+  <data name="History" xml:space="preserve">
+    <value>null</value>
+  </data>
 </root>

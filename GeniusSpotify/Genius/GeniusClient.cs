@@ -17,12 +17,12 @@ namespace Genius
         {
             httpClient = new HttpClient();
             this.token = token;
+            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
         }
         public async Task<Search> SearchSong(string name)
         {
             name = name.Trim();
             name = name.Replace(" ", "%20");
-            httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
             var result = await httpClient.GetAsync("https://api.genius.com/search?q=" + name);
             result.EnsureSuccessStatusCode();
             string jsonBody = await result.Content.ReadAsStringAsync();
