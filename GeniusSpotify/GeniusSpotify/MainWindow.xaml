@@ -7,14 +7,18 @@
         mc:Ignorable="d"
         Title="Soptify Genius" Height="450" Width="800" SizeToContent="Height" Topmost="True" WindowStartupLocation="CenterScreen" Background="#FFB0AAAA" ResizeMode="CanMinimize" WindowStyle="None" AllowsTransparency="True">
     <Grid Margin="10">
-        <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="741,0,0,0" VerticalAlignment="Top" Width="39" Background="#FF6C6969" BorderBrush="{x:Null}" Click="CloseButton_Click"/>
-        <Button x:Name="minimizeButton" Content="Minimize" HorizontalAlignment="Left" Margin="683,0,0,0" VerticalAlignment="Top" Width="53" Background="#FF6C6969" BorderBrush="{x:Null}" Click="MinimizeButton_Click"/>
-        <ListView HorizontalAlignment="Left" Height="395" Margin="10,25,0,0" VerticalAlignment="Top" Width="760" Background="#FF6C6969">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="95*"/>
+            <ColumnDefinition Width="61*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="266.483,0,0,0" VerticalAlignment="Top" Width="39" Background="#FF6C6969" BorderBrush="{x:Null}" Click="CloseButton_Click" Grid.Column="1"/>
+        <Button x:Name="minimizeButton" Content="Minimize" HorizontalAlignment="Left" Margin="208.483,0,0,0" VerticalAlignment="Top" Width="53" Background="#FF6C6969" BorderBrush="{x:Null}" Click="MinimizeButton_Click" Grid.Column="1"/>
+        <ListBox x:Name="viewHistory" HorizontalAlignment="Left" Height="395" Margin="10,25,0,0" VerticalAlignment="Top" Width="760" Grid.ColumnSpan="2">
+            <ListBox.ItemTemplate >
+                <DataTemplate>
+                    <TextBlock x:Name="Title" Text="{Binding Title}" MouseDown="Title_MouseDown"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
