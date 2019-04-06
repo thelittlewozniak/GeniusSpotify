@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeniusSpotify.HistoryWork
+namespace RepositoryDatabase.Database
 {
-    public class History
+    public class History:EntityBase
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string Artist { get; set; }
         public string Link { get; set; }

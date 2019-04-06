@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusSpotify", "GeniusSpotify\GeniusSpotify.csproj", "{1840D542-BD15-4551-B4E9-79A8E756827B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify", "Spotify\Spotify.csproj", "{9E364B2E-737F-446D-9F1B-247A3F1848FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genius", "Genius\Genius.csproj", "{A9476DA4-8648-4894-8D70-78D0C219F7DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryDatabase", "RepositeryDatabase\RepositoryDatabase.csproj", "{EF2CEA19-F522-4773-9980-E3634824E0CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{A9476DA4-8648-4894-8D70-78D0C219F7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9476DA4-8648-4894-8D70-78D0C219F7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9476DA4-8648-4894-8D70-78D0C219F7DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF2CEA19-F522-4773-9980-E3634824E0CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF2CEA19-F522-4773-9980-E3634824E0CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF2CEA19-F522-4773-9980-E3634824E0CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF2CEA19-F522-4773-9980-E3634824E0CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

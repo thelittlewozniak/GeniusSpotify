@@ -1,9 +1,9 @@
 ﻿using Genius;
-using GeniusSpotify.HistoryWork;
+using RepositoryDatabase;
+using RepositoryDatabase.Database;
 using Spotify;
 using System.Diagnostics;
 using System.Linq;
-using System.Net.Http;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
@@ -15,49 +15,71 @@ namespace GeniusSpotify
     /// </summary>
     public partial class MainWindow : Window
     {
-        public bool Checking { get; set; } = true;
-        private ISpotify spotifyClient;
-        private IGenius geniusClient;
-        private Thread thread;
-        public HistoryDb histories;
+        private bool checking = true;
+        private readonly ISpotify spotifyClient;
+        private readonly IGenius geniusClient;
+        private readonly Thread thread;
+        private readonly HistoryDb histories = new HistoryDb();
+        private readonly IRepository<History> repository;
+        private History latest;
         public MainWindow()
         {
             InitializeComponent();
             spotifyClient = new SpotifyClient();
-            histories = new HistoryDb();
             geniusClient = new GeniusClient(Properties.Resources.ACCESS_TOKEN_GENIUS);
             thread = new Thread(CheckButton);
             thread.Start();
-            viewHistory.ItemsSource = histories.Histories.ToList();
+            repository = new RepositoryDB<History>(histories);
+            viewHistory.ItemsSource = repository.List().ToList();
         }
         public async void CheckButton()
         {
-            while (Checking)
+            while (checking)
             {
                 await Application.Current.Dispatcher.Invoke(async delegate
                  {
                      if (Keyboard.IsKeyDown(Key.F2))
                      {
                          var name = spotifyClient.GetSongTitle();
-                         if (name != null)
+                         if (name != null && name !="Spotify")
                          {
                              var result = await geniusClient.SearchSong(name);
                              if(result.Response.Hits.Count > 0)
                              {
                                  Process.Start(result.Response.Hits[0].Result.url);
-                                 histories.Histories.Add(new History { Title = result.Response.Hits[0].Result.Full_title, Artist = "", Link = result.Response.Hits[0].Result.url });
-                                 await histories.SaveChangesAsync();
-                                 viewHistory.ItemsSource = histories.Histories.ToList();
+                                 var history = new History
+                                 {
+                                     Title = result.Response.Hits[0].Result.Full_title,
+                                     Artist = "",
+                                     Link = result.Response.Hits[0].Result.url
+                                 };
+                                 AddToHistory(history);
                              }
+                         }
+                         else if(latest != null)
+                         {
+                             Process.Start(latest.Link);
+                             AddToHistory(latest);
+                         }
+                         else
+                         {
+                             latest = repository.List().OrderByDescending(x => x.ListenedAt).FirstOrDefault();
+                             Process.Start(latest.Link);
+                             AddToHistory(latest);
                          }
                      }
                  });
             }
         }
-
+        private void AddToHistory(History history)
+        {
+            repository.Add(history);
+            latest = history;
+            viewHistory.ItemsSource = repository.List().ToList();
+        }
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Checking = false;
+            checking = false;
             thread.Abort();
             Close();
         }
