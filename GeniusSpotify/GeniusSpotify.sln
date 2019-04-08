@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusSpotify.Client", "GeniusSpotify\GeniusSpotify.Client.csproj", "{1840D542-BD15-4551-B4E9-79A8E756827B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "GeniusSpotify\App.csproj", "{1840D542-BD15-4551-B4E9-79A8E756827B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusSpotify.Client.Library.Spotify", "Spotify\GeniusSpotify.Client.Library.Spotify.csproj", "{9E364B2E-737F-446D-9F1B-247A3F1848FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spotify", "Spotify\Spotify.csproj", "{9E364B2E-737F-446D-9F1B-247A3F1848FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeniusSpotify.Client.Library.Genius", "Genius\GeniusSpotify.Client.Library.Genius.csproj", "{A9476DA4-8648-4894-8D70-78D0C219F7DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genius", "Genius\Genius.csproj", "{A9476DA4-8648-4894-8D70-78D0C219F7DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeniusSpotify.Client.RepositoryDatabase", "RepositeryDatabase\GeniusSpotify.Client.RepositoryDatabase.csproj", "{EF2CEA19-F522-4773-9980-E3634824E0CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryDatabase", "RepositeryDatabase\RepositoryDatabase.csproj", "{EF2CEA19-F522-4773-9980-E3634824E0CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeniusSpotify.API", "GeniusSpotify.API\GeniusSpotify.API.csproj", "{18FE8514-5F25-41FC-BA26-8353D7C92B45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "GeniusSpotify.API\API.csproj", "{18FE8514-5F25-41FC-BA26-8353D7C92B45}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{472DC4EE-89F2-4F48-958E-CD8B81FE7B63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{25CD7629-71AD-464E-B5D0-7DBB06064CBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +46,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1840D542-BD15-4551-B4E9-79A8E756827B} = {472DC4EE-89F2-4F48-958E-CD8B81FE7B63}
+		{9E364B2E-737F-446D-9F1B-247A3F1848FF} = {25CD7629-71AD-464E-B5D0-7DBB06064CBA}
+		{A9476DA4-8648-4894-8D70-78D0C219F7DD} = {25CD7629-71AD-464E-B5D0-7DBB06064CBA}
+		{EF2CEA19-F522-4773-9980-E3634824E0CF} = {472DC4EE-89F2-4F48-958E-CD8B81FE7B63}
+		{25CD7629-71AD-464E-B5D0-7DBB06064CBA} = {472DC4EE-89F2-4F48-958E-CD8B81FE7B63}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA878934-026B-4CE6-8896-ACC1E4613C5B}

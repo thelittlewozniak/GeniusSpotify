@@ -266,17 +266,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Genius\GeniusSpotify.Client.Library.Genius.csproj">
+    <ProjectReference Include="..\Genius\Genius.csproj">
       <Project>{a9476da4-8648-4894-8d70-78d0c219f7dd}</Project>
-      <Name>GeniusSpotify.Client.Library.Genius</Name>
+      <Name>Genius</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RepositeryDatabase\GeniusSpotify.Client.RepositoryDatabase.csproj">
+    <ProjectReference Include="..\RepositeryDatabase\RepositoryDatabase.csproj">
       <Project>{EF2CEA19-F522-4773-9980-E3634824E0CF}</Project>
-      <Name>GeniusSpotify.Client.RepositoryDatabase</Name>
+      <Name>RepositoryDatabase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spotify\GeniusSpotify.Client.Library.Spotify.csproj">
+    <ProjectReference Include="..\Spotify\Spotify.csproj">
       <Project>{9e364b2e-737f-446d-9f1b-247a3f1848ff}</Project>
-      <Name>GeniusSpotify.Client.Library.Spotify</Name>
+      <Name>Spotify</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
